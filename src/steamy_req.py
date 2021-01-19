@@ -100,8 +100,6 @@ def parse_url(u):
     # print(id)
     return id
 
-def busy_bee(x):
-
 
 def return_gamedata():
     data_json = read_gamedata(data_path)
