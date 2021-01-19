@@ -107,4 +107,4 @@ def return_gamedata():
 
 return_gamedata()
 
-Thread(target=ds.mainloop, args=(20)).start()
+Thread(target=ds.mainloop).start()
