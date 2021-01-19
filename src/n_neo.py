@@ -66,8 +66,6 @@ green = [ 0, 255, 0 ]
 red = [ 0, 0, 255 ]
  
  
-def flag(colors):
-    colors = [blue, red, green]
-    for c in colors:
-        apa102(clock_pin, data_pin, [c]*8)
-        time.sleep(1)
+def flag(c):
+    apa102(clock_pin, data_pin, [c]*8)
+    time.sleep(1)
