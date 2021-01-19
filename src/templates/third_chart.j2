@@ -1,0 +1,80 @@
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<link rel="style" href="./css/chart3">
+</head>
+
+<div class="container">
+<figure class="highcharts-figure">
+  <div id="container"></div>
+  <p class="highcharts-description">
+  </p>
+
+  <button id="plain">Plain</button>
+  <button id="inverted">Inverted</button>
+  <button id="polar">Polar</button>
+</figure>
+</div>
+<script>
+  const chart = Highcharts.chart('container', {
+    title: {
+      text: 'Top Played Games'
+    },
+    subtitle: {
+      text: 'For this user only'
+    },
+    xAxis: {
+      categories: [ {% for i in top_games %} 
+                      {{ i[1] }} , 
+                    {% endfor %} ]
+    },
+    series: [{
+      type: 'column',
+      colorByPoint: true,
+      data: [   {% for i in top_games %}
+                  {{ i[0] }} , 
+                {% endfor %}  ] ,
+      showInLegend: false
+    }]
+  });
+
+  document.getElementById('plain').addEventListener('click', () => {
+    chart.update({
+      chart: {
+        inverted: false,
+        polar: false
+      },
+      subtitle: {
+        text: 'Plain'
+      }
+    });
+  });
+
+  document.getElementById('inverted').addEventListener('click', () => {
+    chart.update({
+      chart: {
+        inverted: true,
+        polar: false
+      },
+      subtitle: {
+        text: 'Inverted'
+      }
+    });
+  });
+
+  document.getElementById('polar').addEventListener('click', () => {
+    chart.update({
+      chart: {
+        inverted: false,
+        polar: true
+      },
+      subtitle: {
+        text: 'Polar'
+      }
+    });
+  });
+
+</script>

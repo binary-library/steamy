@@ -1,0 +1,90 @@
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+<script src="https://code.highcharts.com/modules/lollipop.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<link rel="style" href="./css/chart2.css"
+</head>
+
+<div class="topgamesreviews">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+        </p>
+    </figure>
+</div>
+
+<script> 
+    Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Positive & Negative Reviews'
+    },
+    subtitle: {
+        text: 'Top Games Reviews'
+    },
+    xAxis: {
+        categories: [ {% for k, v in reviews.items() %}
+                        "{{ k }}",
+                      {% endfor %} ],
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Reviews (Thousands)',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        //valueSuffix: ' millions'
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor:
+            Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Negative Reviews',
+        data: [{% for k, v in reviews.items() %}
+                    {{ v[0] }} ,
+               {% endfor %}]
+    }, {
+        name: 'Positive Reviews',
+        data: [{% for k, v in reviews.items() %}
+                    {{ v[1] }} ,
+               {% endfor %}]
+    }
+
+    ]
+});
+    </script>
+</div>

@@ -1,0 +1,73 @@
+
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/dumbbell.js"></script>
+<script src="https://code.highcharts.com/modules/lollipop.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<link rel="style" href="./css/chart1.css"
+</head>
+
+<body> 
+<div class="topgameschart">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+        </p>
+    </figure>
+
+<script>
+    Highcharts.chart('container', {
+
+        chart: {
+            type: 'lollipop'
+    },
+
+    accessibility: {
+        point: {
+            valueDescriptionFormat: '{index}. {xDescription}, {point.y}.'
+        }
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    subtitle: {
+        text: 'Top Games Owner Count'
+    },
+
+    title: {
+        text: 'Top 15 Games By Owner Count'
+    },
+
+    tooltip: {
+        shared: true
+    },
+
+    xAxis: {
+        type: 'category'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Steam Users Who Own This Game'
+        }
+    },
+
+    series: [{
+        name: 'Game Owners',
+        data: [
+            {% for k, v in games.items() %}
+                { 
+                    name: "{{ k }}" ,
+                    low: {{ v }}
+                },
+            {% endfor %}
+            ] }]
+
+    });
+    </script>
+</body>
