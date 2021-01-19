@@ -76,7 +76,7 @@ def s_servo(x):
     if x == 0:
         servo.max()
     elif x == 1:
-        servop.mid()
+        servo.mid()
     else:
         servo.mid()
 
@@ -126,7 +126,7 @@ def search(sort_type):
 #homepage
 @app.route('/')
 def main():
-    _servo(1)
+    s_servo(1)
     return render_template('main.j2')
 #charts seperatly being rendered in an Iframe
 @app.route('/first_chart')

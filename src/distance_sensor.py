@@ -63,5 +63,3 @@ def mainloop():
         print("Measurement stopped by User")
         GPIO.cleanup()
         
-        
-mainloop()
